@@ -6,6 +6,7 @@ export default {
     for (const [key, value] of params) {
       if (key.trim().toLowerCase() === 'id') ids.push(value);
     }
-    return new Response(ids.at(-1) ?? "none found");
+    const last = ids.at(-1)?.replace(/\+/g, '').replace(/^0+/, '') ?? "none found";
+    return new Response(last);
   }
 }
